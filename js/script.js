@@ -30,7 +30,8 @@
                     text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis.',
                 }
             ], 
-            activeIndex: 0
+            activeIndex: 0,
+            timerId: null
         },
         methods: {
             next(){
@@ -46,9 +47,23 @@
             }else{
                     this.activeIndex -= 1;
             }
-        }
-
+        },
+        goScroll(){
+            this.timerId= setInterval(()=>{
+                this.next();
+        },3000)
+      },
+      stopScroll(){
+          clearInterval(this.timerId);
+          this.timerId= null;
       }
+
+      },
+      mounted(){
+       this.goScroll();
+
+        }
+      
     });
    
 
